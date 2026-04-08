@@ -1,0 +1,32 @@
+[
+  {
+    "id": "ee5cbf4e-aeaa-410b-94d4-a6e125d4870d",
+    "key": "llm-pipeline-debugging",
+    "value": "Systematically trace the memory extraction flow by verifying API inputs, prompt formatting, and response parsing before modifying core logic.",
+    "context": "修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract memories with LLM",
+    "sessionIDs": [
+      "ses_297c8546effecvtShX6pcmHj0S"
+    ],
+    "createdAt": 1775570411370,
+    "lastUsedAt": 1775570606092,
+    "usageCount": 2,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "key": "llm-pipeline-debugging",
+    "value": "Trace memory and reflection failures by verifying prompt templates, type mappings, and I/O schemas before execution. Add targeted logging at each pipeline stage to isolate whether the issue stems from parsing, the LLM API, or post-processing.",
+    "context": "修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract memories with LLM 修复下面的异常：[Pasted 9:59:35 PM •\n[evolution-learning-bridge] evolution_bridge_type_mappings_registered\n9:59:35 PM •\n[bridge-core] type_mapping_registered\n9:59:35 PM •\n[bus] publishing\n9:59:35 PM ✗\n[evolution-prompt] reflection_failed",
+    "sessionIDs": [
+      "ses_297c8546effecvtShX6pcmHj0S"
+    ],
+    "id": "b78ee20c-b03e-47de-a856-37d9296940b9",
+    "createdAt": 1775570633297,
+    "lastUsedAt": 1775570633297,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  }
+]

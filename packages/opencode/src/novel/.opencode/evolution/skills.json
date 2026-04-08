@@ -401,6 +401,7 @@
     "status": "draft"
   },
   {
+    "id": "1544adb2-315e-495d-8383-9f98180e1375",
     "name": "auto-read-task",
     "description": "Auto-generated skill for Please analyze this codebase and create an AGENTS.md file containing:\n1. Build/lint/test commands - ",
     "content": "# Please analyze this codebase and create an AGENTS.\n\n## Description\n\nAuto-generated skill for: Please analyze this codebase and create an AGENTS.md file containing:\n1. Build/lint/test commands - especially for running a single test\n2. Code style guidelines including imports, formatting, types, naming conventions, error handling, etc.\n\nThe file you create will be given to agentic coding agents (such as yourself) that operate in this repository. Make it about 150 lines long.\nIf there are Cursor rules (in .cursor/rules/ or .cursorrules) or Copilot rules (in .github/copilot-instructions.md), make sure to include them.\n\nIf there's already an AGENTS.md, improve it if it's located in /home/urio/Documents/opencode continue\n\n## Triggers\n\nThis skill activates when:\n- Working with read operations\n- Working with glob operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-05\n",
@@ -412,8 +413,59 @@
       "create"
     ],
     "sessionID": "ses_2a1d897baffem4HTxE8PH0okxD",
-    "id": "1544adb2-315e-495d-8383-9f98180e1375",
     "createdAt": 1775401384383,
+    "status": "draft"
+  },
+  {
+    "id": "10332ee7-a004-4ece-908f-99ade9714e7a",
+    "name": "auto-grep-task",
+    "description": "Auto-generated skill for 修改opencode的主题为浅色",
+    "content": "# 修改opencode的主题为浅色\n\n## Description\n\nAuto-generated skill for: 修改opencode的主题为浅色\n\n## Triggers\n\nThis skill activates when:\n- Working with grep operations\n- Working with glob operations\n- Working with read operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-07\n",
+    "triggerPatterns": [
+      "opencode"
+    ],
+    "sessionID": "ses_297cf2650ffe1I6xQBd1xPGLb2",
+    "createdAt": 1775569702182,
+    "status": "draft"
+  },
+  {
+    "id": "95c2f018-0d11-4d51-a10b-0931d6187386",
+    "name": "auto-read-task",
+    "description": "Auto-generated skill for 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLA",
+    "content": "# 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencod\n\n## Description\n\nAuto-generated skill for: 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md\n\n## Triggers\n\nThis skill activates when:\n- Working with read operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-08\n",
+    "triggerPatterns": [
+      "novelhomeuriodocumentsopencodepackagesopencodesrcnoveldocsrefactoringplanmd"
+    ],
+    "sessionID": "ses_292b7ebf6ffe61SEnH1vM942Zt",
+    "createdAt": 1775655093445,
+    "status": "draft"
+  },
+  {
+    "id": "cbdd0906-d6ce-4730-afca-1860e0f58cfb",
+    "name": "auto-read-task",
+    "description": "Auto-generated skill for 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLA",
+    "content": "# 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencod\n\n## Description\n\nAuto-generated skill for: 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue\n\n## Triggers\n\nThis skill activates when:\n- Working with read operations\n- Working with glob operations\n- Working with bash operations\n- Working with todowrite operations\n- Working with grep operations\n- Working with write operations\n- Working with edit operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-08\n",
+    "triggerPatterns": [
+      "novelhomeuriodocumentsopencodepackagesopencodesrcnoveldocsrefactoringplanmd",
+      "llmembedding",
+      "continue"
+    ],
+    "sessionID": "ses_292b7ebf6ffe61SEnH1vM942Zt",
+    "createdAt": 1775657438708,
+    "status": "draft"
+  },
+  {
+    "name": "auto-read-task",
+    "description": "Auto-generated skill for 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLA",
+    "content": "# 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencod\n\n## Description\n\nAuto-generated skill for: 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue 不继续完整重构，选择渐进式改进实现重构计划中所有功能，同时确保现有系统功能正常工作且完全集成\n\n## Triggers\n\nThis skill activates when:\n- Working with read operations\n- Working with glob operations\n- Working with bash operations\n- Working with todowrite operations\n- Working with grep operations\n- Working with write operations\n- Working with edit operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-08\n",
+    "triggerPatterns": [
+      "novelhomeuriodocumentsopencodepackagesopencodesrcnoveldocsrefactoringplanmd",
+      "llmembedding",
+      "continue"
+    ],
+    "sessionID": "ses_292b7ebf6ffe61SEnH1vM942Zt",
+    "id": "305920f6-f96b-49bf-bed8-8aaae529220f",
+    "createdAt": 1775658133278,
     "status": "draft"
   }
 ]

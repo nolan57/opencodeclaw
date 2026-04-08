@@ -1,0 +1,107 @@
+[
+  {
+    "id": "b5f6b750-b7a7-448d-9152-9d11d6a993e5",
+    "key": "config-search-strategy",
+    "value": "Use `glob` to locate configuration or style files and `grep` for keywords like 'theme', 'color', or 'mode' to quickly pinpoint the correct setting in an unfamiliar codebase.",
+    "context": "修改opencode的主题为浅色",
+    "sessionIDs": [
+      "ses_297cf2650ffe1I6xQBd1xPGLb2"
+    ],
+    "createdAt": 1775569731827,
+    "lastUsedAt": 1775569731827,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "id": "3eee09ba-c6b1-4d6b-a6a9-f05eae8c6d6c",
+    "key": "refactoring_plan_evaluation",
+    "value": "When evaluating refactoring plans, always compare proposed architecture against actual existing code structure to identify gaps and inconsistencies early",
+    "context": "对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue",
+    "sessionIDs": [
+      "ses_292b7ebf6ffe61SEnH1vM942Zt"
+    ],
+    "createdAt": 1775657454691,
+    "lastUsedAt": 1775657454691,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "id": "0fb9d644-267b-452d-b3ea-307fc73c1ef6",
+    "key": "progressive_refactoring_principle",
+    "value": "Progressive refactoring should maintain backward compatibility - breaking changes require clear migration paths and should be phased incrementally",
+    "context": "对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue",
+    "sessionIDs": [
+      "ses_292b7ebf6ffe61SEnH1vM942Zt"
+    ],
+    "createdAt": 1775657455713,
+    "lastUsedAt": 1775657455713,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "id": "28986a6e-9509-4f49-8df4-e017dc02556d",
+    "key": "unified_abstraction_design",
+    "value": "Unified abstractions for cross-cutting concerns (LLM calls, embedding, database operations) should be designed upfront in refactoring plans, not retrofitted after implementation",
+    "context": "对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue",
+    "sessionIDs": [
+      "ses_292b7ebf6ffe61SEnH1vM942Zt"
+    ],
+    "createdAt": 1775657456348,
+    "lastUsedAt": 1775657456348,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "id": "1dad421f-03e9-4a6c-9ed6-dea988f8fa89",
+    "key": "渐进式改进优于全面重构",
+    "value": "面对复杂系统时，选择渐进式改进而非一次性重写更安全，能更好地保护已有功能",
+    "context": "对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue 不继续完整重构，选择渐进式改进实现重构计划中所有功能，同时确保现有系统功能正常工作且完全集成",
+    "sessionIDs": [
+      "ses_292b7ebf6ffe61SEnH1vM942Zt"
+    ],
+    "createdAt": 1775658145018,
+    "lastUsedAt": 1775658145018,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "id": "e6cff1a5-e303-4963-b2fe-541a01a47f00",
+    "key": "确保完全集成是重构首要原则",
+    "value": "重构过程中必须确保所有功能完全集成而非单独工作，系统整体可用性优先于局部优化",
+    "context": "对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue 不继续完整重构，选择渐进式改进实现重构计划中所有功能，同时确保现有系统功能正常工作且完全集成",
+    "sessionIDs": [
+      "ses_292b7ebf6ffe61SEnH1vM942Zt"
+    ],
+    "createdAt": 1775658146451,
+    "lastUsedAt": 1775658146451,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  },
+  {
+    "key": "统一抽象层的重要性",
+    "value": "对LLM调用(含embedding)和数据库操作等服务统一抽象，是保持系统一致性和可维护性的关键",
+    "context": "对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 对比novel引擎的代码，评价这个重构方案：/home/urio/Documents/opencode/packages/opencode/src/novel/docs/REFACTORING_PLAN.md 执行渐进式改进，注意不要破坏已有功能，注意确保所有功能都是完全集成，注意确保所有的llm调用（包括embedding）和数据库操作的统一等 continue 不继续完整重构，选择渐进式改进实现重构计划中所有功能，同时确保现有系统功能正常工作且完全集成",
+    "sessionIDs": [
+      "ses_292b7ebf6ffe61SEnH1vM942Zt"
+    ],
+    "id": "6c8ae7dc-3b83-4a7f-b2b7-9a83a6ca1f5e",
+    "createdAt": 1775658148883,
+    "lastUsedAt": 1775658148883,
+    "usageCount": 0,
+    "sensitive": false,
+    "encrypted": false,
+    "archived": false
+  }
+]

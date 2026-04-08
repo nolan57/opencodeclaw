@@ -1,12 +1,13 @@
 import type { MessageV2 } from "@/session/message-v2"
 import { getPromptEvolutions, savePromptEvolution } from "./store"
-import { generateText } from "ai"
+import { generateObject } from "ai"
 import { getNovelLanguageModel } from "../novel/model"
 import { readFile, writeFile, mkdir } from "fs/promises"
 import { resolve, dirname } from "path"
 import { Log } from "../util/log"
 import { Instance } from "../project/instance"
 import type { PromptEvolution } from "./types"
+import z from "zod"
 
 const log = Log.create({ service: "evolution-prompt" })
 
@@ -40,12 +41,10 @@ Based on this analysis:
 2. What specific instructions were missing?
 3. What worked well that should be emphasized?
 
-Respond in JSON format:
-{
-  "shouldOptimize": boolean,
-  "optimizedPrompt": string (if shouldOptimize is true),
-  "reason": string (explain why this optimization would help)
-}`
+Respond with:
+1. Whether prompt optimization would help (shouldOptimize)
+2. The improved prompt if applicable (optimizedPrompt)
+3. Explanation of why this optimization would help (reason)`
 }
 
 export interface ReflectionInput {
@@ -64,6 +63,11 @@ export async function reflectOnSession(
   sessionID: string,
   input: ReflectionInput,
 ): Promise<{ shouldOptimize: boolean; optimizedPrompt?: string; reason?: string }> {
+  return {
+    shouldOptimize: false,
+    reason: "Self-reflection disabled for initial implementation",
+  }
+
   const messageTexts = input.messages
     .slice(-MESSAGE_LIMIT)
     .map((m) => `[${m.info.role}]: ${m.parts.map((p) => ("text" in p ? p.text : "")).join(" ")}`)
@@ -79,41 +83,41 @@ export async function reflectOnSession(
   try {
     const languageModel = await getNovelLanguageModel()
 
-    const result = await generateText({
+    const result = await generateObject({
       model: languageModel,
       prompt: prompt,
+      schema: z.object({
+        shouldOptimize: z.boolean(),
+        optimizedPrompt: z.string().optional(),
+        reason: z.string(),
+      }),
     })
 
-    const text = result.text.trim()
-    const jsonMatch = text.match(/\{[\s\S]*\}/)
+    const reflection = result.object
 
-    if (jsonMatch) {
-      const reflection = JSON.parse(jsonMatch[0])
+    if (reflection.shouldOptimize && reflection.optimizedPrompt) {
+      const evolution = await savePromptEvolution(projectDir, {
+        originalPrompt: prompt,
+        optimizedPrompt: reflection.optimizedPrompt!,
+        reason: reflection.reason || "Session reflection identified improvement opportunity",
+        sessionID: sessionID || `session-${Date.now()}`,
+      })
 
-      if (reflection.shouldOptimize && reflection.optimizedPrompt) {
-        const evolution = await savePromptEvolution(projectDir, {
-          originalPrompt: prompt,
-          optimizedPrompt: reflection.optimizedPrompt,
-          reason: reflection.reason || "Session reflection identified improvement opportunity",
-          sessionID: sessionID || `session-${Date.now()}`,
-        })
-
-        log.info("prompt_evolution_saved", {
-          id: evolution.id,
-          reason: evolution.reason,
-        })
-
-        return {
-          shouldOptimize: true,
-          optimizedPrompt: reflection.optimizedPrompt,
-          reason: reflection.reason,
-        }
-      }
+      log.info("prompt_evolution_saved", {
+        id: evolution.id,
+        reason: evolution.reason,
+      })
 
       return {
-        shouldOptimize: false,
-        reason: reflection.reason || "No optimization needed",
+        shouldOptimize: true,
+        optimizedPrompt: reflection.optimizedPrompt,
+        reason: reflection.reason,
       }
+    }
+
+    return {
+      shouldOptimize: false,
+      reason: reflection.reason || "No optimization needed",
     }
   } catch (error) {
     log.error("reflection_failed", { error: String(error) })

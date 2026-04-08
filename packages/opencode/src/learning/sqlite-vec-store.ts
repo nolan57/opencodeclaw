@@ -1037,7 +1037,7 @@ export class SqliteVecStore implements IVectorStore {
 
     const hash1 = this.hashString(text)
     const hash2 = this.hashString(text.split("").reverse().join(""))
-    const dimensions = this.config.defaultDimensions!
+    const dimensions = this.configuredDim
 
     const embedding: number[] = []
     for (let i = 0; i < dimensions; i++) {

@@ -2,14 +2,14 @@
   {
     "name": "auto-read-task",
     "description": "Auto-generated skill for test task",
-    "content": "# test task\n\n## Description\n\nAuto-generated skill for: test task\n\n## Triggers\n\nThis skill activates when:\n- Working with read operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-03-28\n",
+    "content": "# test task\n\n## Description\n\nAuto-generated skill for: test task\n\n## Triggers\n\nThis skill activates when:\n- Working with read operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-07\n",
     "triggerPatterns": [
       "test",
       "task"
     ],
     "sessionID": "ses123",
-    "id": "ff4e9603-5d51-4330-9927-d5c2d7686e57",
-    "createdAt": 1774741723197,
+    "id": "4eab7f4d-8bbb-459a-bdfa-bb768cee2a8a",
+    "createdAt": 1775572584113,
     "status": "draft"
   }
 ]

@@ -6007,6 +6007,7 @@
     "status": "draft"
   },
   {
+    "id": "e609f147-9ce1-4208-a31a-03e843c3dbf6",
     "name": "auto-grep-task",
     "description": "Auto-generated skill for 执行 opencode novel start /home/Urio/Documents/opencode/novles/novel0.md --loops 5 --config /home/Urio",
     "content": "# 执行 opencode novel start /home/Urio/Documents/openc\n\n## Description\n\nAuto-generated skill for: 执行 opencode novel start /home/Urio/Documents/opencode/novles/novel0.md --loops 5 --config /home/Urio/Documents/opencode/packages/opencode/src/novel/config/novel-config.json --print-logs 后，根据下面的信息，产生的数据库是384维度，但应该是1536，请修正   ：   [Pasted ~5 lines] INFO  2026-03-31T11:21:04 +7ms service=db path=/home/urio/Documents/opencode/node_modules/.bun/sqlite-vec-linux-x64@0.1.7-alpha.10/node_modules/sqlite-vec-linux-x64/vec0.so sqlite-vec loaded from cache (version query unavailable)\nINFO  2026-03-31T11:21:04 +3ms service=db count=9 mode=bundled applying migrations\nINFO  2026-03-31T11:21:04 +2ms service=db dimension=384 source=database vector_dimension_using_stored\nINFO  2026-03-31T11:21:04 +0ms service=db dimension=384 vector_dimension_validated\nINFO  2026-03-31T11:21:10 +5179ms service=db backupPath=/home/urio/.local/share/opencode/backups/opencode.db.bak.2026-03-31T11-21-04-836Z database backup created 执行 opencode novel start /home/Urio/Documents/opencode/novles/novel0.md --loops 5 --config /home/Urio/Documents/opencode/packages/opencode/src/novel/config/novel-config.json --print-logs 后，出现下面异常信息，没有生成panel，需要修复    ：  [Pasted ~12 lines] [VISUAL PANEL DEBUG] Starting visual panel generation for chapter 1\n[VISUAL PANEL DEBUG] Character count: 3\n[VISUAL PANEL DEBUG] Story segment length: 2633\n[VISUAL PANEL DEBUG] Calling generateAndSaveVisualPanels...\nINFO  2026-03-31T11:58:25 +5ms service=visual-orchestrator chapterCount=1 characterCount=3 storySegmentLength=2633 visual_panel_generation_start\nINFO  2026-03-31T11:58:25 +4ms service=visual-config-loader path=/$bunfs/root/src/visual-config.json loading_visual_config\nERROR 2026-03-31T11:58:25 +0ms service=visual-config-loader error=Error: ENOENT: no such file or directory, open '/$bunfs/root/src/visual-config.json' path=/$bunfs/root/src/visual-config.json visual_config_load_failed\nERROR 2026-03-31T11:58:25 +5ms service=visual-orchestrator error=Error: ENOENT: no such file or directory, open '/$bunfs/root/src/visual-config.json' durationMs=9 visual_panel_generation_failed\nWARN  2026-03-31T11:58:25 +1ms service=visual-orchestrator chapterCount=1 durationMs=0 no_panels_to_save\n[VISUAL PANEL DEBUG] Visual panels completed in 14ms\n[VISUAL PANEL DEBUG] Panel count: 0\n[VISUAL PANEL DEBUG] Saved path: null\n\n## Triggers\n\nThis skill activates when:\n- Working with grep operations\n- Working with read operations\n- Working with edit operations\n- Working with bash operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-03-31\n",
@@ -6018,8 +6019,39 @@
       "loops"
     ],
     "sessionID": "ses_2bc54acadffeXaLXoxaBLI0xHC",
-    "id": "e609f147-9ce1-4208-a31a-03e843c3dbf6",
     "createdAt": 1774959199683,
+    "status": "draft"
+  },
+  {
+    "id": "0ac71a59-b895-47ac-9ee3-a5d5b45e3602",
+    "name": "auto-grep-task",
+    "description": "Auto-generated skill for 修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract memories with LLM",
+    "content": "# 修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract \n\n## Description\n\nAuto-generated skill for: 修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract memories with LLM\n\n## Triggers\n\nThis skill activates when:\n- Working with grep operations\n- Working with read operations\n- Working with edit operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-07\n",
+    "triggerPatterns": [
+      "94852",
+      "memory",
+      "failed",
+      "extract",
+      "memories"
+    ],
+    "sessionID": "ses_297c8546effecvtShX6pcmHj0S",
+    "createdAt": 1775570375045,
+    "status": "draft"
+  },
+  {
+    "name": "auto-grep-task",
+    "description": "Auto-generated skill for 修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract memories with LLM 修复下面的异常：[Pasted 9:59:35 PM •\n[ev",
+    "content": "# 修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract \n\n## Description\n\nAuto-generated skill for: 修复出现下面的异常：9:48:52 PM ✗\n[memory] Failed to extract memories with LLM 修复下面的异常：[Pasted 9:59:35 PM •\n[evolution-learning-bridge] evolution_bridge_type_mappings_registered\n9:59:35 PM •\n[bridge-core] type_mapping_registered\n9:59:35 PM •\n[bus] publishing\n9:59:35 PM ✗\n[evolution-prompt] reflection_failed\n\n## Triggers\n\nThis skill activates when:\n- Working with grep operations\n- Working with read operations\n- Working with edit operations\n\n## Actions\n\n1. Analyze the task requirements\n2. Execute relevant tool calls\n3. Verify results\n\n## Notes\n\nGenerated from session analysis on 2026-04-07\n",
+    "triggerPatterns": [
+      "94852",
+      "memory",
+      "failed",
+      "extract",
+      "memories"
+    ],
+    "sessionID": "ses_297c8546effecvtShX6pcmHj0S",
+    "id": "85fad48b-d672-4680-8398-b0efd00c4bb5",
+    "createdAt": 1775570585423,
     "status": "draft"
   }
 ]

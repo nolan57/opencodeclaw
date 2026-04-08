@@ -116,7 +116,7 @@ export function tui(input: {
     const unguard = win32InstallCtrlCGuard()
     win32DisableProcessedInput()
 
-    const mode = await getTerminalBackgroundColor()
+    const mode: "dark" | "light" = "light"
 
     // Re-clear after getTerminalBackgroundColor() — setRawMode(false) restores
     // the original console mode which re-enables ENABLE_PROCESSED_INPUT.

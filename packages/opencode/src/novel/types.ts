@@ -514,6 +514,48 @@ export interface VisualGenerationMetadata {
   timestamp: number
 }
 
+// ============================================================================
+// Dimension Coordination Types (Progressive Refactoring)
+// ============================================================================
+
+export interface DimensionData {
+  version: number
+  lastUpdated: number
+}
+
+export interface DimensionUpdate {
+  changes: Record<string, unknown>
+  confidence: number
+}
+
+export interface DimensionConflict {
+  dimensionA: string
+  dimensionB: string
+  type: "contradiction" | "resource_competition" | "priority_clash"
+  description: string
+  severity: "low" | "medium" | "high" | "critical"
+}
+
+export interface DimensionControllerConfig {
+  enabled?: boolean
+  priority?: number
+}
+
+export const DEFAULT_DIMENSION_CONFIG: DimensionControllerConfig = {
+  enabled: true,
+  priority: 50,
+}
+
+export interface CrossDimensionRule {
+  name: string
+  dimensions: [string, string]
+  trigger: (data: DimensionDataMap) => boolean
+  action: (data: DimensionDataMap) => Promise<void> | void
+  priority: number
+}
+
+export type DimensionDataMap = Map<string, DimensionData>
+
 log.info("novel_types_loaded", {
   traumaTags: Object.keys(DEFAULT_TRAUMA_TAGS).length,
   skillCategories: Object.keys(DEFAULT_SKILL_CATEGORIES).length,

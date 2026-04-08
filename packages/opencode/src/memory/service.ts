@@ -9,7 +9,7 @@ import { Log } from "../util/log"
 import z from "zod"
 import { CodeAnalyzer, type CodeEntity, type ImportInfo } from "./code-analyzer"
 import { Provider } from "../provider/provider"
-import { generateText } from "ai"
+import { generateObject } from "ai"
 import { Bus } from "../bus"
 import { TuiEvent } from "../cli/cmd/tui/event"
 import { readFile } from "fs/promises"
@@ -200,11 +200,6 @@ interface MemoryPatternsFile {
 
 /** Memory extraction prompt template */
 const MEMORY_EXTRACTION_PROMPT = `Extract 0-3 key learnings from this task that would help with future similar tasks.
-Return a JSON array with objects containing:
-- key: short descriptive key in kebab-case (e.g., "typescript-tips")
-- value: actionable advice in 1-2 sentences
-
-Respond ONLY with valid JSON array, no other text.
 
 Task: {task}
 Tool calls: {toolCalls}
@@ -1650,51 +1645,85 @@ export class MemoryService {
   }): Promise<ExtractedMemory[]> {
     const projectDir = params.projectDir ?? Instance.directory
     const memories: ExtractedMemory[] = []
+    let modelKey = ""
+    let hasLanguageModel = false
 
     try {
       const model = await Provider.getModel(params.modelProviderID, params.modelID)
+      modelKey = `${params.modelProviderID}/${params.modelID}`
       const languageModel = await Provider.getLanguage(model)
+      hasLanguageModel = !!languageModel
 
       const prompt = MEMORY_EXTRACTION_PROMPT.replace("{task}", params.task.slice(0, 500))
         .replace("{toolCalls}", params.toolCalls.slice(0, 20).join(", "))
         .replace("{outcome}", params.outcome)
 
-      const result = await generateText({
+      const result = await generateObject({
         model: languageModel,
         system: "You are a helpful assistant that extracts key learnings from development tasks.",
         prompt,
+        schema: z.object({
+          memories: z.array(
+            z.object({
+              key: z.string(),
+              value: z.string(),
+            }),
+          ),
+        }),
       })
 
-      const text = result.text.trim()
-      const jsonMatch = text.match(/\[[\s\S]*\]/)
-      if (jsonMatch) {
-        const parsed = JSON.parse(jsonMatch[0])
-        if (Array.isArray(parsed)) {
-          for (const item of parsed) {
-            if (item.key && item.value) {
-              const newMemory = await saveMemory(projectDir, {
+      const extractedArray = result.object?.memories ?? []
+      if (extractedArray.length === 0) {
+        log.info("No memories extracted - model returned empty", { modelKey })
+      }
+
+      for (const item of extractedArray) {
+        if (item.key && item.value) {
+          const newMemory = await saveMemory(projectDir, {
+            key: item.key,
+            value: item.value,
+            context: params.task,
+            sessionIDs: [params.sessionID],
+          })
+
+          const vs = await getSharedVectorStore()
+          try {
+            await vs.store({
+              node_type: "memory",
+              node_id: newMemory.id,
+              entity_title: `${item.key}: ${item.value}`,
+              vector_type: "content",
+              metadata: { key: item.key, value: item.value },
+            })
+          } catch (vectorError) {
+            if (vectorError instanceof Error && vectorError.name === "VectorDimensionMismatchError") {
+              log.warn("Skipping vector storage due to dimension mismatch", {
                 key: item.key,
-                value: item.value,
-                context: params.task,
-                sessionIDs: [params.sessionID],
+                error: vectorError.message,
               })
-
-              const vs = await getSharedVectorStore()
-              await vs.store({
-                node_type: "memory",
-                node_id: newMemory.id,
-                entity_title: `${item.key}: ${item.value}`,
-                vector_type: "content",
-                metadata: { key: item.key, value: item.value },
-              })
-
-              memories.push({ key: item.key, value: item.value })
+            } else {
+              throw vectorError
             }
           }
+
+          memories.push({ key: item.key, value: item.value })
         }
       }
     } catch (error) {
-      log.error("Failed to extract memories with LLM", { error: String(error) })
+      if (error instanceof Error && error.name === "VectorDimensionMismatchError") {
+        log.warn("Memory extraction skipped vector storage due to dimension mismatch", {
+          providerID: params.modelProviderID,
+          modelID: params.modelID,
+        })
+      } else {
+        log.error("Failed to extract memories with LLM", {
+          error: String(error),
+          providerID: params.modelProviderID,
+          modelID: params.modelID,
+          modelKey,
+          hasLanguageModel,
+        })
+      }
     }
 
     if (memories.length > 0) {
