@@ -3,7 +3,7 @@ import { NegativeMemory } from "./negative"
 import { Archive, type ArchiveState } from "./archive"
 import { Log } from "../util/log"
 import { generateText } from "ai"
-import { getNovelLanguageModel } from "../novel/model"
+import { Provider } from "../provider/provider"
 import { withSpan, spanAttrs } from "./tracing"
 
 const log = Log.create({ service: "learning-critic" })
@@ -227,7 +227,9 @@ export class Critic {
    */
   async reviewCodeQuality(plan: RefactoringPlan, codeDiff: string): Promise<CodeQualityReview> {
     try {
-      const languageModel = await getNovelLanguageModel()
+      const defaultModel = await Provider.defaultModel()
+      const model = await Provider.getModel(defaultModel.providerID, defaultModel.modelID)
+      const languageModel = await Provider.getLanguage(model)
 
       const prompt = `You are a senior code reviewer. Review the following code changes for quality issues.
 

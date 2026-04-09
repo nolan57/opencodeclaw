@@ -137,52 +137,6 @@ export namespace Command {
       }
     }
 
-    // Add novel commands as invokable commands
-    const novelCommands = [
-      {
-        name: "novel",
-        description: "Self-evolving novel writing engine - use subcommands: start, continue, state, patterns, reset",
-      },
-      { name: "novel start", description: "Start a new story session with optional prompt file" },
-      { name: "novel continue", description: "Continue from last saved story state" },
-      { name: "novel state", description: "Display current story state (characters, world, relationships)" },
-      { name: "novel patterns", description: "Display discovered narrative patterns" },
-      { name: "novel reset", description: "Reset story state and start fresh" },
-      { name: "novel inject", description: "Inject additional context into current story" },
-      { name: "novel evolve", description: "Manually trigger PatternMiner evolution" },
-      { name: "novel export", description: "Export story in md, json, or pdf format" },
-    ]
-    for (const cmd of novelCommands) {
-      if (!result[cmd.name]) {
-        result[cmd.name] = {
-          name: cmd.name,
-          description: cmd.description,
-          source: "command",
-          get template() {
-            return `You are interacting with the novel writing engine.
-
-The user wants to: ${cmd.description}
-
-Available novel subcommands:
-- /novel start [prompt_file] - Start a new story session
-- /novel continue - Continue from last saved state  
-- /novel state - Display current story state
-- /novel patterns - Display discovered narrative patterns
-- /novel reset - Reset story state and start fresh
-- /novel inject <file> - Inject additional context
-- /novel evolve - Manually trigger PatternMiner evolution
-- /novel export <format> - Export story (md/json/pdf)
-
-Please execute the appropriate novel subcommand using the opencode CLI.`
-          },
-          hints:
-            cmd.name === "novel"
-              ? ["start", "continue", "state", "patterns", "reset", "inject", "evolve", "export"]
-              : [],
-        }
-      }
-    }
-
     return result
   })
 

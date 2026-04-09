@@ -3,7 +3,7 @@ import { SemanticAnchor } from "./semantic-anchor"
 import { ConstraintLoader } from "./constraint-loader"
 import { Log } from "../util/log"
 import { generateText } from "ai"
-import { getNovelLanguageModel } from "../novel/model"
+import { Provider } from "../provider/provider"
 
 const log = Log.create({ service: "consistency-checker" })
 const sevenDays = 7 * 24 * 60 * 60 * 1000
@@ -151,7 +151,9 @@ export class ConsistencyChecker {
     b: KnowledgeNode,
   ): Promise<{ hasConflict: boolean; severity: "low" | "medium" | "high"; reason: string; resolution?: string }> {
     try {
-      const languageModel = await getNovelLanguageModel()
+      const defaultModel = await Provider.defaultModel()
+      const model = await Provider.getModel(defaultModel.providerID, defaultModel.modelID)
+      const languageModel = await Provider.getLanguage(model)
 
       const prompt = `Analyze these two knowledge entries for logical conflicts.
 
@@ -335,7 +337,9 @@ Output JSON:
       const validNodes = nodes.filter((n): n is KnowledgeNode => n !== null)
       const [a, b] = validNodes
 
-      const languageModel = await getNovelLanguageModel()
+      const defaultModel = await Provider.defaultModel()
+      const model = await Provider.getModel(defaultModel.providerID, defaultModel.modelID)
+      const languageModel = await Provider.getLanguage(model)
 
       const prompt = `Resolve this knowledge conflict.
 

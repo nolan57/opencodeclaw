@@ -1,7 +1,7 @@
 import type { MessageV2 } from "@/session/message-v2"
 import { getPromptEvolutions, savePromptEvolution } from "./store"
 import { generateObject } from "ai"
-import { getNovelLanguageModel } from "../novel/model"
+import { Provider } from "../provider/provider"
 import { readFile, writeFile, mkdir } from "fs/promises"
 import { resolve, dirname } from "path"
 import { Log } from "../util/log"
@@ -81,7 +81,9 @@ export async function reflectOnSession(
   })
 
   try {
-    const languageModel = await getNovelLanguageModel()
+    const defaultModel = await Provider.defaultModel()
+    const model = await Provider.getModel(defaultModel.providerID, defaultModel.modelID)
+    const languageModel = await Provider.getLanguage(model)
 
     const result = await generateObject({
       model: languageModel,

@@ -5,7 +5,7 @@ import { Skill } from "../skill/skill"
 import type { SkillEvolution } from "./types"
 import { SkillSandbox, generateTestCases, type TestCase } from "../learning/skill-sandbox"
 import { generateText } from "ai"
-import { getNovelLanguageModel } from "../novel/model"
+import { Provider } from "../provider/provider"
 import { Log } from "../util/log"
 
 const log = Log.create({ service: "evolution-skill" })
@@ -73,7 +73,9 @@ export async function generateExecutableSkill(
   requirements: string[],
 ): Promise<ExecutableSkill | null> {
   try {
-    const languageModel = await getNovelLanguageModel()
+    const defaultModel = await Provider.defaultModel()
+    const model = await Provider.getModel(defaultModel.providerID, defaultModel.modelID)
+    const languageModel = await Provider.getLanguage(model)
 
     const prompt = `Generate an executable skill with test cases.
 
